@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistem Pendaftaran Kelas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>🎓 Sistem Pendaftaran Kelas</h1>
+    <div class="nav-buttons">
+      <button class="nav-btn active" onclick="showSection('home','homeBtn')" id="homeBtn">Home</button>
+      <button class="nav-btn" onclick="showSection('login','loginBtn')" id="loginBtn">Login</button>
+      <button class="nav-btn" onclick="showSection('student','studentBtn')" id="studentBtn" style="display:none;">Siswa</button>
+      <button class="nav-btn" onclick="showSection('admin','adminBtn')" id="adminBtn" style="display:none;">Admin</button>
+      <button class="nav-btn" onclick="logout()" id="logoutBtn" style="display:none;">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="alert-container"></div>
+
+    <!-- Home -->
+    <div id="home" class="section active">
+      <h2 style="text-align:center;margin-bottom:1.2rem">Selamat Datang</h2>
+      <p style="text-align:center;color:#4a5568">Silakan login untuk melanjutkan ke menu siswa atau admin.</p>
+    </div>
+
+    <!-- Login -->
+    <div id="login" class="section">
+      <h2 style="text-align:center;margin-bottom:1.2rem">Login</h2>
+      <div class="form-container">
+        <div style="text-align:center;margin-bottom:1.5rem">
+          <div class="login-icon">🔑</div>
+          <p style="color:#4a5568;font-size:.95rem">Masukkan username & password</p>
+        </div>
+        <div class="form-group">
+          <label for="userType">Login sebagai</label>
+          <select id="userType">
+            <option value="student">Siswa</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Username</label><input type="text" id="username" placeholder="Masukkan username"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="password" placeholder="Masukkan password"></div>
+        <button onclick="login()">Masuk</button>
+      </div>
+    </div>
+
+    <!-- Student -->
+    <div id="student" class="section">
+      <h2>Daftar Kelas Tersedia</h2>
+      <div id="class-list" class="class-grid"></div>
+    </div>
+
+    <!-- Admin -->
+    <div id="admin" class="section">
+      <h2>Panel Admin</h2>
+      <div class="form-container" style="margin-bottom:1.5rem">
+        <div class="form-group"><label>Nama Kelas</label><input type="text" id="className" placeholder="Contoh: Matematika"></div>
+        <div class="form-group"><label>Kuota</label><input type="number" id="quota" placeholder="Jumlah kuota" min="1"></div>
+        <button onclick="addClass()">Tambah Kelas</button>
+      </div>
+      <div class="export-buttons">
+        <button onclick="exportCSV()">Export CSV</button>
+        <button onclick="exportPDF()">Export PDF</button>
+      </div>
+      <div id="admin-class-list" class="class-grid" style="margin-top:1rem"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
